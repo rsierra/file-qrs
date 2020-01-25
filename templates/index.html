@@ -1,0 +1,10 @@
+{{define "title"}}Files list{{end}}
+
+{{define "body"}}
+<h1>Files list</h1>
+<ul>
+  {{range .}}
+  <li><a href="/{{.}}" class="qr-link">{{.}}</a></li>
+  {{end}}
+</ul>
+{{end}}

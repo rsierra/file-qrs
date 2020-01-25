@@ -1,0 +1,12 @@
+body, html{
+  height: 100%;
+}
+#qr-code{
+  position: absolute;
+  background: white;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+#qr-code canvas{
+  display: block;
+}
