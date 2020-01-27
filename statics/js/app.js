@@ -24,5 +24,12 @@ $("a.qr-link").click(function (e) {
   $("#qr-code").fadeIn();
 
   // set qr-code content
-  $("#qr-code").empty().qrcode(href);
+  $("#qr-code").empty().qrcode(
+    {
+      text: encodeURI(decodeURI(href)),
+      correctLevel: 1, // QRErrorCorrectLevel.L,
+      width: 300,
+      height: 300
+    }
+  );
 });
