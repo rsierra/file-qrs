@@ -11,10 +11,11 @@ package main
 import (
 	"flag"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"path/filepath"
 	"os"
+	"path/filepath"
 )
 
 var port = flag.String("p", "8100", "port to serve on")
@@ -44,7 +45,7 @@ func serveTemplate(w http.ResponseWriter, r *http.Request) {
 	lp := filepath.Join("templates", "layout.html")
 	fp := filepath.Join("templates", template_name)
 
-	files, err := filePathWalkDir(*directory)
+	files, err := IOReadDir(*directory)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -54,13 +55,15 @@ func serveTemplate(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "layout", files)
 }
 
-func filePathWalkDir(root string) ([]string, error) {
+func IOReadDir(root string) ([]string, error) {
 	var files []string
-	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
-		if !info.IsDir() {
-			files = append(files, path)
+	fileInfo, err := ioutil.ReadDir(root)
+	if err != nil {
+		return files, err
+	}
+
+	for _, file := range fileInfo {
+		files = append(files, file.Name())
 		}
-		return nil
-	})
-	return files, err
+	return files, nil
 }
