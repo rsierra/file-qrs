@@ -10,6 +10,7 @@ package main
 
 import (
 	"flag"
+	auth "github.com/abbot/go-http-auth"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -30,10 +31,22 @@ func main() {
 	ss := http.FileServer(http.Dir("statics"))
 	http.Handle("/statics/", http.StripPrefix("/statics/", ss))
 
-	http.HandleFunc("/", serveTemplate)
+	htppasswd := os.Getenv("HTPASSWD_FILE")
+	if htppasswd == "" {
+		http.HandleFunc("/", serveTemplate)
+	} else {
+		log.Printf("Using '%s' http basic auth file\n", htppasswd)
+		h := auth.HtpasswdFileProvider(htppasswd)
+		a := auth.NewBasicAuthenticator("File-qrs Realm", h)
+		http.Handle("/", a.Wrap(serveAuthTemplate))
+	}
 
 	log.Printf("Serving %s on HTTP port: %s\n", *directory, *port)
 	log.Fatal(http.ListenAndServe(":"+*port, nil))
+}
+
+func serveAuthTemplate(w http.ResponseWriter, ar *auth.AuthenticatedRequest) {
+	serveTemplate(w, &ar.Request)
 }
 
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
@@ -64,6 +77,6 @@ func IOReadDir(root string) ([]string, error) {
 
 	for _, file := range fileInfo {
 		files = append(files, file.Name())
-		}
+	}
 	return files, nil
 }
