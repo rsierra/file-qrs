@@ -5,7 +5,8 @@ $(document).ready(function () {
 });
 
 $("body").click(function (e) {
-  var QRVisibe = $(e.target).is(".qr-link")
+  var target_selector = ".qr-link";
+  var QRVisibe = $(e.target).is(target_selector) || $(e.target).parents(target_selector).length > 0
 
   // if there is click event outside IMG then close the qr-view box
   if (!QRVisibe)

@@ -4,7 +4,10 @@
 <h1>Files list</h1>
 <ul>
   {{range .}}
-  <li><a href="/files/{{.}}" class="qr-link">{{.}}</a></li>
+  <li>
+    {{.}}:
+    <a href="/files/{{.}}" download><i class="fa fa-download"></i></a>
+    <a href="/files/{{.}}" class="qr-link"><i class="fa fa-qrcode"></i></a></li>
   {{end}}
 </ul>
 {{end}}
