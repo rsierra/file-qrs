@@ -13,20 +13,23 @@
 
   <script src="//unpkg.com/vue"></script>
   <script src="//unpkg.com/http-vue-loader"></script>
+  <script src="/_app/statics/js/libs/qrcode.vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </head>
 
-<body>
+<body class="show-game-card">
   {{template "body" .}}
 
   <div id="vue-app">
 
     <game-card
+    :game_id="game.id"
     :game_name="game.name"
-    :game_cover_url="game.cover_url" :game_qr_code_url="game.qr_code_url" :game_desc="game.desc"></game-card>
-
+    :game_cover_url="game.cover_url" :game_qr_code_url="game.qr_code_url"
+    :game_desc="game.desc"></game-card>
   </div>
 
-  <script type="module" src="/statics/js/vue-app.js"></script>
+  <script type="module" src="/_app/statics/js/vue-app.js"></script>
 </body>
 
 </html>

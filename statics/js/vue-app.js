@@ -1,28 +1,29 @@
+// App
 let vm = new window.Vue({
   el: '#vue-app',
 
   components: {
     // Components
-    'game-card': window.httpVueLoader('/statics/js/components/GameCard.vue')
+    'game-card': window.httpVueLoader('/_app/statics/js/components/GameCard.vue')
   },
 
   data: {
     game: {
-      name: '',
-      cover_url: '',
-      qr_code_url: '',
-      desc: '',
+      id: 9874,
+      name: 'Nombre del juego',
+      cover_url: '//via.placeholder.com/200x320.jpg',
+      qr_code_url: '//via.placeholder.com/300x300.jpg',
+      desc: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
     },
     another_var: 'value',
   },
-
   methods: {
     onUpdateConfigValue: function (key_value) {
 
     },
   },
-
   created: function () {
     console.log('App ready!');
+
   }
 });
