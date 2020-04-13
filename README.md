@@ -61,13 +61,13 @@ file-qrs:
 ## Compiling SCSS
 
 1. Install globally `nodemon` & `node-sass`
-```
+```bash
 npm install -g nodemon node-sass
 ```
 
 2. Start watching src/css folder and output compiled css to app.css
-```
-nodemon --watch css/src -e css,scss -x "node-sass --output-style compressed statics/css/src/app.scss statics/css/app.css"
+```bash
+nodemon --watch statics/css/src -e css,scss -x "node-sass --output-style compressed statics/css/src/app.scss statics/css/app.css"
 ```
 
 ## 🔨 Build binary

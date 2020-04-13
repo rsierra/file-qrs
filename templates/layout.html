@@ -16,7 +16,19 @@
 
 <body>
   {{template "body" .}}
+
+  <script type="text/template" id="card-template">
+    <div id="card-template-content" class="selects">
+      <p>{{"{{"}}child_number{{"}}"}}</p>
+    </div>
+  </script>
+
+  <div id="card-template-container" stye="display: none;">
+
+  </div>
+
   <script type='text/javascript' src="/_app/statics/js/app.js"></script>
+  <script type='text/javascript' src="/_app/statics/js/ready.js"></script>
 </body>
 
 </html>
