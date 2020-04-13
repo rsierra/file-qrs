@@ -18,8 +18,8 @@ let vm = new window.Vue({
     another_var: 'value',
   },
   methods: {
-    onGameCard: function (data) {
-
+    onGameCard: function (obj) {
+      console.log(obj);
     },
   },
   created: function () {
@@ -28,11 +28,10 @@ let vm = new window.Vue({
   }
 });
 
+// Add
 document.addEventListener("click", function (e) {
   if (e.target.id === "sample-game-link-url") {
     e.preventDefault();
-    console.log(e.target.href);
-    // alert("Clicked");
-    vm.$root.onGameCard();
+    vm.$root.onGameCard(e.target.href);
   }
 });
