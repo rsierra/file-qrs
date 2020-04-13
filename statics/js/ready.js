@@ -24,7 +24,7 @@ $(document).on('click', 'a.qr-link', function (e) {
   var href = $(this).prop('href');
 
   // set its location and do show
-  $("#qr-code").css("top", (e.pageY) + "px").css("left", (e.pageX) + "px");
+  // $("#qr-code").css("top", (e.pageY) + "px").css("left", (e.pageX) + "px");
   $("#qr-code").fadeIn();
 
   // set qr-code content
@@ -41,6 +41,12 @@ $(document).on('click', 'a.qr-link', function (e) {
     'key_1': 'value 1',
     'key_2': 'value_2',
   };
+
+  $.getJSON("url", data,
+    function (data, textStatus, jqXHR) {
+
+    }
+  );
 
   var card_template = $('#card-template').html();
 
