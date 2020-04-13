@@ -10,25 +10,23 @@
     rel="icon" type="image/x-icon" />
   <meta charset="utf-8">
   <title>{{template "title"}}</title>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery.qrcode@1.0.3/jquery.qrcode.min.js"></script>
+
+  <script src="//unpkg.com/vue"></script>
+  <script src="//unpkg.com/http-vue-loader"></script>
 </head>
 
 <body>
   {{template "body" .}}
 
-  <script type="text/template" id="card-template">
-    <div id="card-template-content" class="selects">
-      <p>{{"{{"}}child_number{{"}}"}}</p>
-    </div>
-  </script>
+  <div id="vue-app">
 
-  <div id="card-template-container" stye="display: none;">
+    <game-card
+    :game_name="game.name"
+    :game_cover_url="game.cover_url" :game_qr_code_url="game.qr_code_url" :game_desc="game.desc"></game-card>
 
   </div>
 
-  <script type='text/javascript' src="/_app/statics/js/app.js"></script>
-  <script type='text/javascript' src="/_app/statics/js/ready.js"></script>
+  <script type="module" src="/statics/js/vue-app.js"></script>
 </body>
 
 </html>
