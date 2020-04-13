@@ -18,12 +18,21 @@ let vm = new window.Vue({
     another_var: 'value',
   },
   methods: {
-    onUpdateConfigValue: function (key_value) {
+    onGameCard: function (data) {
 
     },
   },
   created: function () {
     console.log('App ready!');
 
+  }
+});
+
+document.addEventListener("click", function (e) {
+  if (e.target.id === "sample-game-link-url") {
+    e.preventDefault();
+    console.log(e.target.href);
+    // alert("Clicked");
+    vm.$root.onGameCard();
   }
 });
