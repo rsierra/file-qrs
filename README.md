@@ -2,6 +2,7 @@
 # FILE QRS
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/maguilag/file-qrs)](https://hub.docker.com/r/maguilag/file-qrs)
+![Build and release](https://github.com/rsierra/file-qrs/workflows/Build%20and%20release/badge.svg)
 
 A simple golang script to publish files of a local folder via http and generate QR codes for published urls.
 
