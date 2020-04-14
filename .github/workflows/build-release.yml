@@ -1,0 +1,60 @@
+name: Build and release
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        include:
+          - os: macos-latest
+            plataform: x86_64-apple-darwin
+            release_extension: tar.gz
+
+          - os: ubuntu-latest
+            plataform: x86_64-linux
+            release_extension: tar.gz
+            env:
+
+          - os: windows-latest
+            plataform: x86_64-windows
+            release_extension: zip
+
+    steps:
+    - name: Format release file name
+      id: release_file
+      shell: bash
+      run: echo "##[set-output name=name;]$(echo file-qrs_${GITHUB_REF##*/}_${{ matrix.plataform }}.${{ matrix.release_extension }})"
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Set up Go 1.14
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.14
+
+    - name: Build
+      run: go build
+
+    - name: Compress release
+      if: matrix.os != 'windows-latest'
+      run: tar -zcvf ${{ steps.release_file.outputs.name }} file-qrs web/
+    - name: Compress windows release
+      if: matrix.os == 'windows-latest'
+      run: Compress-Archive -Path file-qrs.exe, web -DestinationPath ${{ steps.release_file.outputs.name }}
+
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ steps.release_file.outputs.name }}
+        asset_name: ${{ steps.release_file.outputs.name }}
+        tag: ${{ github.ref }}
