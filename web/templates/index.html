@@ -18,9 +18,9 @@
   {{end}}
   {{range $file := $data.Files}}
   <li>
-    <a href="/_app/files{{$data.CurrentFolder}}{{$file}}" class="qr-link"><i class="fa fa-qrcode"></i></a>
+    <a href="/web/files{{$data.CurrentFolder}}{{$file}}" class="qr-link"><i class="fa fa-qrcode"></i></a>
+    <a href="/web/files{{$data.CurrentFolder}}{{$file}}" download><i class="fa fa-download"></i></a>
     {{.}}
-    <!-- <a href="/_app/files{{$data.CurrentFolder}}{{$file}}" download><i class="fa fa-download"></i></a> -->
   </li>
   {{end}}
 </ul>
