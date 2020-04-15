@@ -11,13 +11,14 @@ package main
 import (
 	"flag"
 	"fmt"
-	auth "github.com/abbot/go-http-auth"
 	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
+
+	auth "github.com/abbot/go-http-auth"
 )
 
 var port = flag.String("p", "8100", "port to serve on")
@@ -27,10 +28,10 @@ func main() {
 	flag.Parse()
 
 	fs := http.FileServer(http.Dir(*root_folder))
-	http.Handle("/_app/files/", http.StripPrefix("/_app/files/", fs))
+	http.Handle("/web/files/", http.StripPrefix("/web/files/", fs))
 
-	ss := http.FileServer(http.Dir("statics"))
-	http.Handle("/_app/statics/", http.StripPrefix("/_app/statics/", ss))
+	ss := http.FileServer(http.Dir("web/assets"))
+	http.Handle("/web/assets/", http.StripPrefix("/web/assets/", ss))
 
 	htppasswd := os.Getenv("HTPASSWD_FILE")
 	if htppasswd == "" {
@@ -66,8 +67,8 @@ func serveTemplate(w http.ResponseWriter, r *http.Request) {
 		Folders       []string
 	}{FolderToWeb(request_path), FolderToWeb(filepath.Dir(request_path)), files, folders}
 
-	lp := filepath.Join("templates", "layout.html")
-	fp := filepath.Join("templates", "index.html")
+	lp := filepath.Join("web", "templates", "layout.html")
+	fp := filepath.Join("web", "templates", "index.html")
 	tmpl, _ := template.ParseFiles(lp, fp)
 	tmpl.ExecuteTemplate(w, "layout", data)
 }

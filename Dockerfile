@@ -11,9 +11,9 @@ RUN go mod download
 # Copy the source from the current directory to the Working Directory inside the container
 COPY . .
 
-# There is a roblem with net lib bindings and CGO_ENABLED is needed
+# There is a problem with net lib bindings and CGO_ENABLED is needed
 # https://stackoverflow.com/questions/36279253/go-compiled-binary-wont-run-in-an-alpine-docker-container-on-ubuntu-host
-RUN CGO_ENABLED=0 go build -o server -v .
+RUN CGO_ENABLED=0 go build -o file-qrs -v .
 
 # ==============================
 # Stage 2: Run the isolated build in a lightweight image
@@ -28,11 +28,10 @@ EXPOSE 8100
 ARG HTPASSWD_FILE
 ENV HTPASSWD_FILE ${HTPASSWD_FILE:-""}
 
-ENTRYPOINT ["/app/server"]
+ENTRYPOINT ["/app/file-qrs"]
 CMD ["-p", "8100", "-d", "/files"]
 
-COPY statics/ ./statics
-COPY templates/ ./templates
-COPY --from=builder /go/src/app/server ./
+COPY web/ ./web
+COPY --from=builder /go/src/app/file-qrs ./
 
 VOLUME /files
