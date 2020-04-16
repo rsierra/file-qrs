@@ -1,6 +1,8 @@
 body, html{
   height: 100%;
+  margin: 40px;
 }
+
 #qr-code{
   position: absolute;
   background: white;
@@ -9,4 +11,37 @@ body, html{
 }
 #qr-code canvas{
   display: block;
+}
+
+h1 a {
+  color: #444;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) ;
+  background-color: #fff;
+  color: #444;
+  padding: 5px;
+  align-items: center;
+}
+
+.box {
+  text-align: center;
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  word-break: break-all;
+}
+
+.box p {
+  margin: 5px;
+}
+
+.box a {
+  color: #fff;
+  font-size: xx-large;
+  margin: 5px;
 }

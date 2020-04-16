@@ -1,28 +1,38 @@
-{{define "title"}}Files list{{end}}
+{{define "title"}}File list{{end}}
 
 {{define "body"}}
 {{with $data := .}}
 {{if eq $data.CurrentFolder "/"}}
-<h1>Files list</h1>
+<h1>File list</h1>
 {{else}}
-<h1>Files list in <b>'{{$data.CurrentFolder}}'</b></h1>
-<a href="{{$data.ParentFolder}}">Back <i class="fa fa-arrow-circle-left"></i></a>
+<h1>
+  File list in <b>'{{$data.CurrentFolder}}'</b>
+  <a href="{{$data.ParentFolder}}"><i class="fa fa-arrow-circle-left"></i></a>
+</h1>
+
 {{end}}
 
-<ul>
+{{if $data.Folders}}
+<div class="wrapper">
   {{range $folder := $data.Folders}}
-  <li>
+  <div class="box">
     <a href="{{$data.CurrentFolder}}{{$folder}}"><i class="fa fa-folder"></i></a>
-    {{.}}
-  </li>
+    <p>{{.}}</p>
+  </div>
   {{end}}
+</div>
+{{end}}
+
+{{if $data.Files}}
+<div class="wrapper">
   {{range $file := $data.Files}}
-  <li>
+  <div class="box">
     <a href="/web/files{{$data.CurrentFolder}}{{$file}}" class="qr-link"><i class="fa fa-qrcode"></i></a>
     <a href="/web/files{{$data.CurrentFolder}}{{$file}}" download><i class="fa fa-download"></i></a>
-    {{.}}
-  </li>
+    <p>{{.}}</p>
+  </div>
   {{end}}
-</ul>
+</div>
+{{end}}
 {{end}}
 {{end}}
