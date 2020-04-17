@@ -28,10 +28,10 @@ func main() {
 	flag.Parse()
 
 	fs := http.FileServer(http.Dir(*root_folder))
-	http.Handle("/web/files/", http.StripPrefix("/web/files/", fs))
+	http.Handle("/_/files/", http.StripPrefix("/_/files/", fs))
 
 	ss := http.FileServer(http.Dir("web/assets"))
-	http.Handle("/web/assets/", http.StripPrefix("/web/assets/", ss))
+	http.Handle("/_/web/assets/", http.StripPrefix("/_/web/assets/", ss))
 
 	htppasswd := os.Getenv("HTPASSWD_FILE")
 	if htppasswd == "" {
