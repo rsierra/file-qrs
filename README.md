@@ -6,7 +6,8 @@
 
 A simple golang script to publish files of a local folder via http and generate QR codes for published urls.
 
-![Index Sample](https://raw.githubusercontent.com/rsierra/file-qrs/master/index.png)
+![Index](https://raw.githubusercontent.com/rsierra/file-qrs/master/index.png)
+![QR](https://raw.githubusercontent.com/rsierra/file-qrs/master/qr.png)
 
 ## ⭐ Features
 
@@ -25,9 +26,9 @@ HTPASSWD_FILE=path-to-htpasswd file-qrs -d path-to-files -p port
 
 Options:
 
-* 📁 **-d** => local path to the directory to publish. Is the current directory by default.
-* 🔌 **-p** => port for local server. 8100 by default.
-* 🔑 **HTPASSWD_FILE** => optinal environment variable for htpasswd file if you need basic http auth to control access.
+* 📁 **-d** => Local path of the directory to publish. Is the current directory by default.
+* 🔌 **-p** => Port for local server. 8100 by default.
+* 🔑 **HTPASSWD_FILE** => Optinal environment variable for htpasswd file if you need basic http auth to control access (only for the web interface, not for the files).
 
 NOTE: if you doesn't have a `htpasswd` file in your server, you can create one with `htpasswd` command from `apache2-utils` package or you can add users to a file with an online generator like [this](https://hostingcanada.org/htpasswd-generator/).
 
@@ -38,8 +39,9 @@ Run with docker:
 ```bash
 docker run -d \
   --name file-qrs \
+  -p 8100:8100 \
   -v /local-path:/files \
-  -v /local-path-to-htpasswd:/.htpasswd
+  -v /local-path-to-htpasswd:/.htpasswd \
   maguilag/file-qrs
 ```
 
@@ -59,16 +61,10 @@ file-qrs:
   restart: unless-stopped
 ```
 
-## 🔨 Build binary
+## 🔨 Dev and build
 
 Install golang, download code and build with:
 
 ```bash
-go build -o file-qrs
+go build
 ```
-
-## 🚧 Working on
-
-* Automatic binaries release.
-* Add html styles.
-* Tests.
