@@ -43,8 +43,15 @@ func main() {
 		http.Handle("/", a.Wrap(serveAuthTemplate))
 	}
 
-	log.Printf("Serving %s on HTTP port: %s\n", *root_folder, *port)
-	log.Fatal(http.ListenAndServe(":"+*port, nil))
+	log.Printf("Serving %s on HTTP port %s\n", *root_folder, *port)
+	log.Fatal(http.ListenAndServe(":"+*port, logRequest(http.DefaultServeMux)))
+}
+
+func logRequest(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
+		handler.ServeHTTP(w, r)
+	})
 }
 
 func serveAuthTemplate(w http.ResponseWriter, ar *auth.AuthenticatedRequest) {
@@ -103,6 +110,7 @@ func ListFilesAndFolders(root string) ([]string, []string, error) {
 func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 	w.WriteHeader(status)
 	if status == http.StatusNotFound {
+		log.Printf("Resource not found\n")
 		fmt.Fprint(w, "Resource not found")
 	}
 }
