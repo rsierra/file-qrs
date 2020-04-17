@@ -1,35 +1,25 @@
+/* GENERAL */
 body, html{
-  margin: 30px;
-}
-
-#qr-code {
-  position: fixed;
-  top: 0; bottom: 0; left: 0;  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: false;
-}
-
-.popup {
-  margin: 100px  auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  width: 300px;
-  position: relative;
+  margin: 24px;
+  font-family: 'Roboto', sans-serif;
+  color: #444;
 }
 
 h1 a {
   color: #444;
+  font-size: xx-large;
+  padding: 5px;
 }
+
+/* GRID */
 
 .wrapper {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) ;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: minmax(min-content, max-content);
   background-color: #fff;
-  color: #444;
   padding: 5px;
-  align-items: center;
 }
 
 .box {
@@ -37,7 +27,7 @@ h1 a {
   background-color: #444;
   color: #fff;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   word-break: break-all;
 }
 
@@ -48,5 +38,23 @@ h1 a {
 .box a {
   color: #fff;
   font-size: xx-large;
-  margin: 5px;
+  padding: 5px;
+}
+
+/* QR CODE */
+
+#qr-code {
+  position: fixed;
+  top: 0; bottom: 0; left: 0; right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+
+.popup {
+  margin: 100px  auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 300px;
+  position: relative;
 }

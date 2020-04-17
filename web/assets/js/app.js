@@ -1,19 +1,7 @@
-$(document).ready(function () {
-  var $view = $("<div id='qr-code'><div class='popup'><div class='content'></div></div></div>");
-  $("body").append($view);
-  $view.hide();
-});
+// Show QR code
 
-$("body").click(function (e) {
-  var target_selector = ".qr-link";
-  var QRVisibe = $(e.target).is(target_selector) || $(e.target).parents(target_selector).length > 0
-
-  // if there is click event outside IMG then close the qr-view box
-  if (!QRVisibe)
-    $('#qr-code').fadeOut();
-});
-
-$("a.qr-link").click(function (e) {
+$(document).on('click', 'a.qr-link', function (e) {
+  console.log(e);
   // prevent default click behaviour
   e.preventDefault();
 
@@ -32,4 +20,15 @@ $("a.qr-link").click(function (e) {
       height: 300
     }
   );
+});
+
+// Hide QR code
+
+$(document).on('click', 'body', function (e) {
+  var target_selector = ".qr-link";
+  var QRVisibe = $(e.target).is(target_selector) || $(e.target).parents(target_selector).length
+
+  // if there is click event outside IMG then close the qr-view box
+  if (!QRVisibe)
+    $('#qr-code').fadeOut();
 });
