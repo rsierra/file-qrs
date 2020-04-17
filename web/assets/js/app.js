@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var $view = $("<div id='qr-code'></div>");
+  var $view = $("<div id='qr-code'><div class='popup'><div class='content'></div></div></div>");
   $("body").append($view);
   $view.hide();
 });
@@ -21,11 +21,10 @@ $("a.qr-link").click(function (e) {
   var href = $(this).prop('href');
 
   // set its location and do show
-  $("#qr-code").css("top", (e.pageY) + "px").css("left", (e.pageX) + "px");
   $("#qr-code").fadeIn();
 
   // set qr-code content
-  $("#qr-code").empty().qrcode(
+  $("#qr-code .content").empty().qrcode(
     {
       text: encodeURI(decodeURI(href)),
       correctLevel: 1, // QRErrorCorrectLevel.L,

@@ -1,16 +1,21 @@
 body, html{
-  height: 100%;
-  margin: 40px;
+  margin: 30px;
 }
 
-#qr-code{
-  position: absolute;
-  background: white;
-  padding: 10px;
-  border: 1px solid #ddd;
+#qr-code {
+  position: fixed;
+  top: 0; bottom: 0; left: 0;  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: false;
 }
-#qr-code canvas{
-  display: block;
+
+.popup {
+  margin: 100px  auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 300px;
+  position: relative;
 }
 
 h1 a {
