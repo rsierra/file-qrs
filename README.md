@@ -6,8 +6,8 @@
 
 A simple golang script to publish files of a local folder via http and generate QR codes for published urls.
 
-![Index](https://raw.githubusercontent.com/rsierra/file-qrs/master/index.png)
-![QR](https://raw.githubusercontent.com/rsierra/file-qrs/master/qr.png)
+![Index](https://raw.githubusercontent.com/rsierra/file-qrs/master/screenshots/index.png)
+![QR](https://raw.githubusercontent.com/rsierra/file-qrs/master/screenshots/qr.png)
 
 ## ⭐ Features
 
