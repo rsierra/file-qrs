@@ -3,7 +3,7 @@
 <html>
 
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/_app/statics/css/app.css">
   <link
     href="data:image/x-icon;base64,AAABAAEAEBACAAAAAACwAAAAFgAAACgAAAAQAAAAIAAAAAEAAQAAAAAAQAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA////AAKnAAB6MgAASlIAAEtCAAB7AAAAAnkAAP/YAACDBQAAUGMAAPy/AAACQAAAel4AAEpSAABK0gAAel4AAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -17,25 +17,13 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </head>
 
-<body class="show-game-card">
-  {{template "body" .}}
-
-  <ul>
-    <li>
-      <a id="sample-game-link-url" href="/9874">[imdb=9874] Nombre del juego 9874</a>
-    </li>
-    <li>
-      <a id="sample-game-link-url" href="/6666">[imdb=6666] Nombre del juego 6666</a>
-    </li>
-  </ul>
-
+<body>
   <div id="vue-app">
+    <folder-item v-for="folder in folders" v-bind:key="'folder-' + folder.id" :folder="folder"></folder-item>
+    <file-item v-for="file in files" v-bind:key="'file-' + file.id" :file="file"></file-item>
 
-    <game-card
-    :game_id="game.id"
-    :game_name="game.name"
-    :game_cover_url="game.cover_url" :game_qr_code_url="game.qr_code_url"
-    :game_desc="game.desc"></game-card>
+    <game-card :game_id="game.id" :game_name="game.name" :game_cover_url="game.cover_url"
+      :game_qr_code_url="game.qr_code_url" :game_desc="game.desc" @update-game="onUpdateGame($event)"></game-card>
   </div>
 
   <script type="module" src="/_app/statics/js/vue-app.js"></script>

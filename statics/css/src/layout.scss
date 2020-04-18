@@ -1,6 +1,5 @@
 body, html{
   height: 100%;
-
 }
 
 #qr-code{
@@ -11,5 +10,13 @@ body, html{
 }
 
 #qr-code canvas{
+  display: block;
+}
+
+.game-card {
+  display: none;
+}
+
+body.show-game-card .game-card {
   display: block;
 }

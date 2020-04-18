@@ -4,10 +4,20 @@ let vm = new window.Vue({
 
   components: {
     // Components
-    'game-card': window.httpVueLoader('/_app/statics/js/components/GameCard.vue')
+    'folder-item': window.httpVueLoader('/_app/statics/js/components/FolderItem.vue'),
+    'file-item': window.httpVueLoader('/_app/statics/js/components/FileItem.vue'),
+    'game-card': window.httpVueLoader('/_app/statics/js/components/GameCard.vue'),
   },
 
   data: {
+    folders: [
+      { id: 1, name: "PSX" },
+      { id: 2, name: "NES" }
+    ],
+    files: [
+      { id: 1, name: "Metal Gear Solid [igdb-375].cia", url: "/_app/files/Metal Gear Solid [igdb-375].cia" },
+      { id: 4, name: "Metal Gear Solid 2 [igdb-375].cia", url: "/_app/files/Metal Gear Solid 2 [igdb-375].cia" }
+    ],
     game: {
       id: 9874,
       name: 'Nombre del juego',
@@ -18,13 +28,15 @@ let vm = new window.Vue({
     another_var: 'value',
   },
   methods: {
+    onUpdateGame: function (event) {
+      console.log(event);
+    },
     onGameCard: function (obj) {
       console.log(obj);
-    },
+    }
   },
   created: function () {
     console.log('App ready!');
-
   }
 });
 
