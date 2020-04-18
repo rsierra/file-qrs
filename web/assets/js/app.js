@@ -9,17 +9,17 @@ $(document).on('click', 'a.qr-link', function (e) {
   var href = $(this).prop('href');
 
   // set its location and do show
-  $("#qr-code").fadeIn();
-
-  // set qr-code content
-  $("#qr-code .content").empty().qrcode(
-    {
-      text: encodeURI(decodeURI(href)),
-      correctLevel: 1, // QRErrorCorrectLevel.L,
-      width: 300,
-      height: 300
-    }
-  );
+  $("#qr-code")
+    .fadeIn()
+    .find(".popup")
+    .empty()
+    .qrcode(
+      {
+        text: encodeURI(decodeURI(href)),
+        correctLevel: 1, // QRErrorCorrectLevel.L,
+        width: 300,
+        height: 300
+      });
 });
 
 // Hide QR code

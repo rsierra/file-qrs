@@ -3,16 +3,20 @@
 {{define "body"}}
 {{with $data := .}}
 {{if eq $data.CurrentFolder "/"}}
-<h1>File list</h1>
+<h1>
+  <i class="fa fa-home"></i>
+  File list
+</h1>
 {{else}}
 <h1>
-  File list in <b>'{{$data.CurrentFolder}}'</b>
   <a href="{{$data.ParentFolder}}"><i class="fa fa-arrow-circle-left"></i></a>
+  File list in <b>'{{$data.CurrentFolder}}'</b>
 </h1>
 
 {{end}}
 
 {{if $data.Folders}}
+<h3>Folders</h3>
 <div class="wrapper">
   {{range $folder := $data.Folders}}
   <div class="box">
@@ -24,6 +28,7 @@
 {{end}}
 
 {{if $data.Files}}
+<h3>Files</h3>
 <div class="wrapper">
   {{range $file := $data.Files}}
   <div class="box">
@@ -34,10 +39,8 @@
   {{end}}
 </div>
 {{end}}
-<div id='qr-code'>
-  <div class='popup'>
-    <div class='content'></div>
-  </div>
+<div id='qr-code' style='display: none;'>
+  <div class='popup'></div>
 </div>
 {{end}}
 {{end}}

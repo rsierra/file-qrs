@@ -47,14 +47,16 @@ h1 a {
   position: fixed;
   top: 0; bottom: 0; left: 0; right: 0;
   background: rgba(0, 0, 0, 0.7);
-  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.popup {
+#qr-code .popup {
   margin: 100px  auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
   width: 300px;
-  position: relative;
 }
