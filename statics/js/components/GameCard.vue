@@ -2,8 +2,8 @@
   <div class="game-card">
     <span @click="hideMe" class="game-card-close" title="Close">x</span>
     <p class="game-name">{{game_name}}</p>
-    <img :src="game_cover_url" :alt="game_name" class="game-cover-url" />
-    <figure class="game-qr-code">
+    <img :src="game_cover_url" :alt="game_name" :title="game_name" class="game-cover-url" />
+    <figure class="game-qr-code" :title="game_qr_code_url">
       <qrcode-vue :value="game_qr_code_url" :size="size" level="H"></qrcode-vue>
       <figcaption>{{game_qr_code_url}}</figcaption>
     </figure>
